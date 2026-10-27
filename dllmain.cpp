@@ -1,5 +1,6 @@
 #include <windows.h>
 
+//g++ dllmain.cpp -shared -o name.dll
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved) {
     
     switch (ul_reason_for_call) {
@@ -7,5 +8,6 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
             MessageBoxA(NULL, "Injected by E.", "Title", MB_OK);
             break;
     }
+    
     return TRUE;
 }
