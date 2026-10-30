@@ -30,6 +30,7 @@ BOOL GetProcessList() {
 
     if(!Process32First(hProcessSnap, &pe32)) {
         cout << "Invalid PE32 First";
+        CloseHandle(hProcessSnap);
         return FALSE;
     }
 
@@ -37,8 +38,8 @@ BOOL GetProcessList() {
     {
         wcout << "Process Name: " << pe32.szExeFile << " - " << "PID: " << pe32.th32ProcessID << endl;
     } while (Process32Next(hProcessSnap, &pe32));
+
     
-
-
+    CloseHandle(hProcessSnap);
     return TRUE;
 }
