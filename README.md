@@ -1,4 +1,6 @@
-For educational and learning purposes only
+# For educational and learning purposes only
+
+dll injector file: https://github.com/EcjTn/dll-injector-win32/blob/main/process-list-and-injector/dll-injector.cpp
 
 - [x] Main DLL
 - [x] DLL Loader
