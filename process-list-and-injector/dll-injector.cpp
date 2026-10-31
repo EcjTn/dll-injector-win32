@@ -12,12 +12,24 @@ int main() {
 
     if (pid == 0) {
         cout << "Process not found.";
+        return 0;
     }
 
     cout << "Found PID: " << pid << endl;
 
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 DWORD GetProcessId(const wchar_t* processName) {
 
