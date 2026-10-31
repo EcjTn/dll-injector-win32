@@ -3,24 +3,23 @@
 #include <tlhelp32.h>
 using namespace std;
 
-DWORD GetProgramPid(const wchar_t* processName);
+DWORD GetProcessId(const wchar_t* processName);
 //void InjectDll(DWORD pid);
 
 int main() {
 
-    DWORD pid = GetProgramPid(L"notepad.exe");
+    DWORD pid = GetProcessId(L"notepad.exe");
 
-    if (pid != 0) {
-        cout << "PID: " << pid << endl;
+    if (pid == 0) {
+        cout << "Process not found.";
     }
-    else {
-        cout << "Process not found." << endl;
-    }
+
+    cout << "Found PID: " << pid << endl;
 
     return 0;
 }
 
-DWORD GetProgramPid(const wchar_t* processName) {
+DWORD GetProcessId(const wchar_t* processName) {
 
     HANDLE hProcessSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
 
@@ -29,10 +28,11 @@ DWORD GetProgramPid(const wchar_t* processName) {
         return 0;
     }
 
-    PROCESSENTRY32W pe32{};
+    PROCESSENTRY32W pe32;
     pe32.dwSize = sizeof(PROCESSENTRY32W);
 
     if (!Process32FirstW(hProcessSnap, &pe32)) {
+        cout << "Invalid PE32 First";
         CloseHandle(hProcessSnap);
         return 0;
     }
